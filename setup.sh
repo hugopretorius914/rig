@@ -12,19 +12,14 @@ while true; do
     kill -0 "$$" || exit
 done 2>/dev/null &
 
-# Setup Finder Commands
-# Show Library Folder in Finder
+# Setup Finder
+echo "Setup Finder"
 chflags nohidden ~/Library
-
-# Show Hidden Files in Finder
 defaults write com.apple.finder AppleShowAllFiles YES
-
-# Show Path Bar in Finder
 defaults write com.apple.finder ShowPathbar -bool true
-
-# Show Status Bar in Finder
 defaults write com.apple.finder ShowStatusBar -bool true
 
+# XCode
 echo "Installing xcode-stuff"
 xcode-select --install
 
@@ -42,44 +37,50 @@ echo 'Checking to see if XCode Command Line Tools are installed...'
 brew config
 
 # Updating Homebrew.
-echo "Updating Homebrew..."
+echo "Updating Homebrew"
 brew update
-
-# Upgrade any already-installed formulae.
-echo "Upgrading Homebrew..."
+echo "Upgrading Homebrew"
 brew upgrade
 
-# Install iTerm2
-echo "Installing iTerm2..."
+# iTerm2
+echo "iTerm2"
 brew cask install iterm2
 
 # Update the Terminal
-# Install oh-my-zsh
-echo "Installing oh-my-zsh..."
+# Ooh-my-zsh
+echo "oh-my-zsh..."
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 echo "Need to logout now to start the new SHELL..."
 logout
 
-# Install Git
-echo "Installing Git..."
+# Git
+echo "Git"
 brew install git
-
 echo "Git config"
 git config --global user.name "Hugo Pretorius"
 git config --global user.email hugopretorius914@gmail.com
 
-# Install GitHub CLI
-echo "Installing GitHub CLI..."
+# GitHub CLI
+echo "GitHub CLI..."
 brew install gh
 
-# Install without cask
+# Speed Test
+echo "Speed Test"
 brew install speedtest_cli
+
+# Node
+echo "Node"
 brew install node
 
-# Install with cask
-brew install --cask android-SDK
-brew install --cask android-ndk
-brew install --cask flutter
+# Flutter
+echo "Flutter"
+brew tap leoafarias/fvm
+brew install fvm
+
+# Android
+echo "Android"
+brew install android-sdk
+brew install android-ndk
 
 # Remove outdated versions from the cellar.
 echo "Running brew cleanup..."
